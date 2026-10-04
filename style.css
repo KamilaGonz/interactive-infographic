@@ -1,0 +1,803 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f7f2e8;
+    color: #27231f;
+    line-height: 1.7;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #ddd4c5;
+    z-index: 1000;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: #8c4f35;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+
+    background:
+        linear-gradient(
+            rgba(247, 242, 232, 0.92),
+            rgba(247, 242, 232, 0.92)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(80, 60, 40, 0.04) 4px
+        );
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.eyebrow,
+.section-label {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #8c4f35;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    margin-bottom: 30px;
+}
+
+.hero-subtitle {
+    max-width: 700px;
+    margin: 0 auto 35px;
+    font-size: 1.25rem;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-button,
+.action-button {
+    border: none;
+    background: #8c4f35;
+    color: white;
+    padding: 15px 28px;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: 0.2s ease;
+}
+
+.primary-button:hover,
+.action-button:hover {
+    transform: translateY(-3px);
+    background: #6f3e2a;
+}
+
+.secondary-button {
+    border: 1px solid #8c4f35;
+    background: transparent;
+    color: #8c4f35;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: 0.2s ease;
+}
+
+.secondary-button:hover {
+    background: #8c4f35;
+    color: white;
+}
+
+.question-button {
+    border: none;
+    background: #27231f;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 4px;
+    margin-top: 25px;
+}
+
+.large-button {
+    font-size: 1.1rem;
+    padding: 17px 35px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    max-width: 850px;
+    margin: auto;
+    padding: 130px 25px;
+    text-align: center;
+}
+
+.intro h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.intro > p {
+    font-size: 1.15rem;
+}
+
+.intro-question {
+    margin-top: 45px;
+    padding: 25px;
+    border-left: 4px solid #8c4f35;
+    background: #eee6d8;
+    text-align: left;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.experience-section {
+    padding: 120px 8%;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 30px;
+}
+
+.experience-section.alternate {
+    background: #eae1d2;
+}
+
+.section-number {
+    font-size: 4rem;
+    color: #b69b80;
+    font-weight: bold;
+}
+
+.section-content {
+    max-width: 1000px;
+}
+
+.section-content h2 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.section-content > p {
+    max-width: 750px;
+    font-size: 1.1rem;
+}
+
+
+/* =========================
+   INTERACTION MESSAGE
+========================= */
+
+.interaction-message {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eee6d8;
+    border-radius: 4px;
+    min-height: 55px;
+}
+
+
+/* =========================
+   COPY EXPERIENCE
+========================= */
+
+.copy-experience {
+    margin-top: 45px;
+    padding: 40px;
+    background: #fdfaf3;
+    border: 1px solid #d4c7b5;
+    text-align: center;
+}
+
+.book-display {
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-pages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.book-page {
+    width: 55px;
+    height: 70px;
+    background: #fff;
+    border: 1px solid #b7a895;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: appear 0.25s ease;
+}
+
+.page-placeholder {
+    font-size: 5rem;
+    opacity: 0.4;
+}
+
+.experience-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.reveal-box {
+    margin-top: 30px;
+    padding: 30px;
+    background: #eee6d8;
+    border-left: 5px solid #8c4f35;
+}
+
+.reveal-box h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    margin-top: 15px;
+}
+
+
+/* =========================
+   PRINTING PRESS
+========================= */
+
+.printing-experience {
+    margin-top: 45px;
+    padding: 45px;
+    background: #fdfaf3;
+    text-align: center;
+    border: 1px solid #d4c7b5;
+}
+
+.printing-press {
+    margin: auto;
+    width: 280px;
+}
+
+.press-top {
+    padding: 20px;
+    background: #27231f;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.printed-pages {
+    min-height: 180px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 5px;
+    border-left: 10px solid #8c4f35;
+    border-right: 10px solid #8c4f35;
+    background: #d4c7b5;
+}
+
+.printed-page {
+    width: 35px;
+    height: 45px;
+    background: white;
+    border: 1px solid #b7a895;
+    animation: appear 0.2s ease;
+}
+
+.press-bottom {
+    height: 20px;
+    background: #27231f;
+}
+
+.print-counter {
+    margin: 30px 0;
+}
+
+.print-counter span {
+    display: block;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #8c4f35;
+}
+
+.print-counter small {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.printing-experience .secondary-button {
+    margin-left: 10px;
+}
+
+.comparison {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    align-items: center;
+    margin-top: 50px;
+    gap: 15px;
+}
+
+.comparison-card {
+    padding: 30px;
+    background: #fdfaf3;
+    text-align: center;
+}
+
+.comparison-card span {
+    display: block;
+    color: #8c4f35;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.comparison-card strong {
+    display: block;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.comparison-arrow {
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+/* =========================
+   IDEA NETWORK
+========================= */
+
+.network-experience {
+    margin-top: 45px;
+    padding: 40px;
+    background: #fdfaf3;
+    text-align: center;
+}
+
+.idea-network {
+    min-height: 280px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+    padding: 30px;
+}
+
+.person {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #eae1d2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    animation: appear 0.4s ease;
+}
+
+.main-person {
+    background: #8c4f35;
+}
+
+.spread-status {
+    margin: 20px 0;
+}
+
+.spread-status strong {
+    font-size: 3rem;
+    color: #8c4f35;
+}
+
+.spread-status span {
+    display: block;
+}
+
+
+/* =========================
+   ACCESS SLIDER
+========================= */
+
+.access-experience {
+    margin-top: 45px;
+    padding: 40px;
+    background: #fdfaf3;
+    text-align: center;
+}
+
+.access-scale {
+    min-height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.access-people {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 700px;
+    justify-content: center;
+    gap: 8px;
+}
+
+.access-person {
+    font-size: 1.8rem;
+    animation: appear 0.2s ease;
+}
+
+input[type="range"] {
+    width: 80%;
+    margin: 30px 0 10px;
+    accent-color: #8c4f35;
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    font-size: 0.85rem;
+}
+
+.access-result {
+    margin-top: 30px;
+}
+
+.access-result span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #8c4f35;
+}
+
+.course-connection {
+    margin-top: 35px;
+    padding: 25px;
+    border: 1px dashed #8c4f35;
+}
+
+
+/* =========================
+   THEN / NOW
+========================= */
+
+.then-now {
+    margin-top: 45px;
+    text-align: center;
+}
+
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle-button {
+    padding: 14px 45px;
+    border: 1px solid #8c4f35;
+    background: transparent;
+    color: #8c4f35;
+}
+
+.toggle-button.active {
+    background: #8c4f35;
+    color: white;
+}
+
+.information-display {
+    margin-top: 25px;
+    padding: 45px;
+    background: #fdfaf3;
+    min-height: 300px;
+}
+
+.info-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.information-display h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.info-points {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.info-points span {
+    padding: 8px 15px;
+    background: #eae1d2;
+}
+
+.responsibility-box {
+    margin-top: 20px;
+    padding: 25px;
+    background: #8c4f35;
+    color: white;
+}
+
+.responsibility-box strong {
+    font-size: 1.3rem;
+}
+
+
+/* =========================
+   TECHNOLOGY
+========================= */
+
+.technology-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 45px;
+}
+
+.technology-button {
+    border: 1px solid #b7a895;
+    background: #fdfaf3;
+    padding: 20px 10px;
+    font-size: 2rem;
+    transition: 0.2s ease;
+}
+
+.technology-button span {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.technology-button:hover,
+.technology-button.active {
+    background: #8c4f35;
+    color: white;
+}
+
+.technology-display {
+    margin-top: 20px;
+    padding: 45px;
+    text-align: center;
+    background: #fdfaf3;
+    min-height: 250px;
+}
+
+.technology-icon {
+    font-size: 4rem;
+}
+
+.technology-display h3 {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.technology-timeline {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 35px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final-section {
+    padding: 140px 25px;
+    background: #27231f;
+    color: white;
+    text-align: center;
+}
+
+.final-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.final-section .section-label {
+    color: #d6a68c;
+}
+
+.final-section h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.final-question {
+    margin-top: 45px;
+}
+
+.final-question h3 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.final-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.final-options button {
+    padding: 15px 25px;
+    background: transparent;
+    color: white;
+    border: 1px solid #d6a68c;
+    border-radius: 4px;
+}
+
+.final-options button:hover {
+    background: #d6a68c;
+    color: #27231f;
+}
+
+.final-response {
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid #d6a68c;
+    min-height: 80px;
+}
+
+
+/* =========================
+   HUMAN CONNECTION
+========================= */
+
+.human-connection {
+    padding: 130px 25px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.human-connection h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.big-question {
+    margin-top: 35px;
+    font-size: 1.35rem;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .experience-section {
+        grid-template-columns: 1fr;
+        padding: 90px 6%;
+    }
+
+    .section-number {
+        font-size: 2.5rem;
+    }
+
+    .comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-arrow {
+        transform: rotate(90deg);
+    }
+
+    .technology-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .slider-labels {
+        font-size: 0.7rem;
+    }
+
+    .printing-experience .secondary-button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+
+    .copy-experience,
+    .printing-experience,
+    .network-experience,
+    .access-experience {
+        padding: 25px 15px;
+    }
+}
