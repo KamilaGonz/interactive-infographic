@@ -1,46 +1,51 @@
-let pagesCopied = 0;
-let bookProgress = 0;
+function startJourney() {
+    document.getElementById("journey").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+let copiedPages = 0;
 
 function copyPage() {
-    pagesCopied++;
+    if (copiedPages >= 30) {
+        document.getElementById("copyMessage").textContent =
+            "You've copied enough pages to see the problem. Imagine doing this for an entire book.";
+        return;
+    }
 
-    const result = document.getElementById("copyResult");
+    copiedPages++;
 
-    if (pagesCopied < 5) {
-        result.innerHTML = `
-            <strong>Page ${pagesCopied} copied.</strong>
-            <p>Keep copying... this takes time!</p>
-        `;
+    const page = document.createElement("div");
+
+    page.className = "book-page";
+    page.textContent = "✎";
+
+    document.getElementById("bookPages").appendChild(page);
+
+    document.getElementById("pageCount").textContent =
+        `${copiedPages} ${copiedPages === 1 ? "page" : "pages"} copied`;
+
+    if (copiedPages < 5) {
+        document.getElementById("copyMessage").textContent =
+            "Another page copied... and you still have a lot left.";
+    } else if (copiedPages < 15) {
+        document.getElementById("copyMessage").textContent =
+            "This is taking a while. Every additional copy requires more time.";
     } else {
-        result.innerHTML = `
-            <strong>5 pages copied.</strong>
-            <p>Imagine doing this for an entire book.</p>
-        `;
+        document.getElementById("copyMessage").textContent =
+            "Imagine doing this hundreds of times.";
     }
 }
 
 function finishBook() {
-    const result = document.getElementById("bookResult");
+    const finished = document.getElementById("bookFinished");
 
-    if (bookProgress < 4) {
-        bookProgress++;
+    finished.classList.remove("hidden");
 
-        const messages = [
-            "You finished another section...",
-            "Still copying...",
-            "Almost there...",
-            "You finished the book!"
-        ];
-
-        result.innerHTML = `
-            <strong>${messages[bookProgress - 1]}</strong>
-        `;
-    } else {
-        result.innerHTML = `
-            <strong>Book completed.</strong>
-            <p>One handwritten book could take months to reproduce.</p>
-        `;
-    }
+    finished.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 }
 
 let printedCopies = 0;
@@ -48,264 +53,320 @@ let printedCopies = 0;
 function printCopy() {
     printedCopies++;
 
-    const result = document.getElementById("printResult");
+    const page = document.createElement("div");
 
-    result.innerHTML = `
-        <strong>Copy ${printedCopies} printed.</strong>
-        <p>
-            The same text can now be reproduced much faster
-            than copying it by hand.
-        </p>
-    `;
+    page.className = "printed-page";
+
+    document.getElementById("printedPages").appendChild(page);
+
+    document.getElementById("printCount").textContent =
+        printedCopies;
+
+    updatePrintMessage();
 }
 
 function printMany() {
-    const result = document.getElementById("printResult");
+    for (let i = 0; i < 25; i++) {
+        printedCopies++;
 
-    printedCopies += 10;
+        const page = document.createElement("div");
 
-    result.innerHTML = `
-        <strong>${printedCopies} copies printed.</strong>
-        <p>
-            Printing allowed the same information to be
-            reproduced on a much larger scale.
-        </p>
-    `;
+        page.className = "printed-page";
+
+        document.getElementById("printedPages").appendChild(page);
+    }
+
+    document.getElementById("printCount").textContent =
+        printedCopies;
+
+    updatePrintMessage();
 }
 
-let networkCount = 0;
+function updatePrintMessage() {
+    const message = document.getElementById("printMessage");
+
+    if (printedCopies === 1) {
+        message.textContent =
+            "One copy. But now you can make another without starting from scratch.";
+    } else if (printedCopies < 10) {
+        message.textContent =
+            "The same text is being reproduced again and again.";
+    } else if (printedCopies < 50) {
+        message.textContent =
+            "One idea is becoming many physical copies.";
+    } else {
+        message.textContent =
+            "This is the power of reproduction at scale.";
+    }
+}
+
+let peopleReached = 1;
 
 function spreadIdea() {
-    networkCount++;
+    const network = document.getElementById("ideaNetwork");
 
-    const result = document.getElementById("networkResult");
+    let amountToAdd = 0;
 
-    if (networkCount === 1) {
-        result.innerHTML = `
-            <strong>The idea begins to spread.</strong>
-            <p>
-                One printed copy can now reach another person.
-            </p>
-        `;
-    } else if (networkCount === 2) {
-        result.innerHTML = `
-            <strong>The network grows.</strong>
-            <p>
-                More people can encounter the same idea.
-            </p>
-        `;
-    } else if (networkCount === 3) {
-        result.innerHTML = `
-            <strong>The idea travels farther.</strong>
-            <p>
-                Printed information can move beyond the
-                person who originally created it.
-            </p>
-        `;
+    if (peopleReached < 5) {
+        amountToAdd = 2;
+    } else if (peopleReached < 15) {
+        amountToAdd = 5;
     } else {
-        result.innerHTML = `
-            <strong>The idea keeps spreading.</strong>
-            <p>
-                This is one of the major changes created by
-                the printing press.
-            </p>
-        `;
+        amountToAdd = 10;
+    }
+
+    for (let i = 0; i < amountToAdd; i++) {
+        const person = document.createElement("div");
+
+        person.className = "person";
+        person.textContent = "👤";
+
+        network.appendChild(person);
+    }
+
+    peopleReached += amountToAdd;
+
+    document.getElementById("peopleReached").textContent =
+        peopleReached;
+
+    updateSpreadMessage();
+
+    if (peopleReached >= 20) {
+        document
+            .getElementById("spreadConclusion")
+            .classList.remove("hidden");
+    }
+}
+
+function updateSpreadMessage() {
+    const message = document.getElementById("spreadMessage");
+
+    if (peopleReached === 1) {
+        message.textContent =
+            "One person has an idea.";
+    } else if (peopleReached < 10) {
+        message.textContent =
+            "The idea is beginning to spread.";
+    } else if (peopleReached < 20) {
+        message.textContent =
+            "More people are receiving the same information.";
+    } else {
+        message.textContent =
+            "The idea has become much harder to contain.";
     }
 }
 
 function resetNetwork() {
-    networkCount = 0;
+    const network = document.getElementById("ideaNetwork");
 
-    const result = document.getElementById("networkResult");
+    network.innerHTML =
+        '<div class="person main-person">💡</div>';
 
-    result.innerHTML = `
-        <p>Start spreading an idea to see what happens.</p>
-    `;
+    peopleReached = 1;
+
+    document.getElementById("peopleReached").textContent = "1";
+
+    document.getElementById("spreadMessage").textContent =
+        "One person has an idea.";
+
+    document
+        .getElementById("spreadConclusion")
+        .classList.add("hidden");
 }
 
 function changeAccess(value) {
-    const result = document.getElementById("accessResult");
+    const peopleContainer =
+        document.getElementById("accessPeople");
+
+    const title =
+        document.getElementById("accessTitle");
+
+    const description =
+        document.getElementById("accessDescription");
+
+    peopleContainer.innerHTML = "";
+
+    let numberOfPeople;
 
     if (value == 1) {
-        result.innerHTML = `
-            <strong>Limited access</strong>
-            <p>
-                Books were expensive and difficult to reproduce,
-                so access to written knowledge was limited.
-            </p>
-        `;
+        numberOfPeople = 3;
+
+        title.textContent =
+            "One community";
+
+        description.textContent =
+            "Information may stay within a small group of people.";
+
     } else if (value == 2) {
-        result.innerHTML = `
-            <strong>Growing access</strong>
-            <p>
-                Printed materials could reach more people than
-                handwritten copies could.
-            </p>
-        `;
+        numberOfPeople = 12;
+
+        title.textContent =
+            "A region";
+
+        description.textContent =
+            "The same information can begin reaching people beyond its original community.";
+
     } else if (value == 3) {
-        result.innerHTML = `
-            <strong>Wider access</strong>
-            <p>
-                More copies meant more opportunities for people
-                to encounter written ideas.
-            </p>
-        `;
+        numberOfPeople = 30;
+
+        title.textContent =
+            "A much larger audience";
+
+        description.textContent =
+            "Information can travel across cities, countries, and social groups.";
+
     } else {
-        result.innerHTML = `
-            <strong>Information becomes easier to access.</strong>
-            <p>
-                The printing press helped move knowledge beyond
-                the small groups who could previously control
-                access to written materials.
-            </p>
-        `;
+        numberOfPeople = 50;
+
+        title.textContent =
+            "Global";
+
+        description.textContent =
+            "Information can potentially reach people across the world.";
+    }
+
+    for (let i = 0; i < numberOfPeople; i++) {
+        const person = document.createElement("span");
+
+        person.className = "access-person";
+        person.textContent = "👤";
+
+        peopleContainer.appendChild(person);
     }
 }
 
-function showInformation() {
-    const result = document.getElementById("informationResult");
+function showInformation(type) {
+    const display =
+        document.getElementById("informationDisplay");
 
-    result.innerHTML = `
-        <div class="then-now-container">
+    const thenButton =
+        document.getElementById("thenButton");
 
-            <div class="then-side">
-                <h3>THEN</h3>
-                <ul>
-                    <li>Information was difficult to reproduce.</li>
-                    <li>Books were expensive and time-consuming to make.</li>
-                    <li>Knowledge spread more slowly.</li>
-                </ul>
+    const nowButton =
+        document.getElementById("nowButton");
+
+    if (type === "then") {
+        thenButton.classList.add("active");
+        nowButton.classList.remove("active");
+
+        display.innerHTML = `
+            <div class="info-icon">📜</div>
+
+            <h3>Information was difficult to reproduce.</h3>
+
+            <div class="info-points">
+                <span>Expensive</span>
+                <span>Slow</span>
+                <span>Limited copies</span>
             </div>
 
-            <div class="now-side">
-                <h3>NOW</h3>
-                <ul>
-                    <li>Information can be reproduced instantly.</li>
-                    <li>Millions of people can access the same information.</li>
-                    <li>Ideas can spread around the world almost immediately.</li>
-                </ul>
+            <p>
+                Access to written knowledge was limited by the time,
+                money, and labor required to reproduce it.
+            </p>
+        `;
+
+    } else {
+        thenButton.classList.remove("active");
+        nowButton.classList.add("active");
+
+        display.innerHTML = `
+            <div class="info-icon">📱</div>
+
+            <h3>Information is easier to access.</h3>
+
+            <div class="info-points">
+                <span>Fast</span>
+                <span>Global</span>
+                <span>Massive audiences</span>
             </div>
 
-        </div>
-    `;
-
-    revealInformationQuestion();
+            <p>
+                Today, information can move around the world almost
+                instantly through digital technology.
+            </p>
+        `;
+    }
 }
 
 function revealInformationQuestion() {
-    const question = document.getElementById("informationQuestion");
-
-    if (question) {
-        question.classList.remove("hidden");
-    }
+    document
+        .getElementById("informationQuestion")
+        .classList.remove("hidden");
 }
 
 function showResponsibility() {
-    const result = document.getElementById("informationResult");
-
-    result.innerHTML = `
-        <div class="responsibility-message">
-            <strong>More access also means more responsibility.</strong>
-            <p>
-                When information becomes easier to spread,
-                people also have to think about what information
-                is accurate, trustworthy, and worth sharing.
-            </p>
-        </div>
-    `;
+    document
+        .getElementById("responsibilityMessage")
+        .classList.remove("hidden");
 }
 
 const technologyData = {
-
     book: {
-        title: "The Book",
         icon: "📖",
-        text: `
-            Printed books made it possible to reproduce and
-            distribute the same information to many people.
-        `
+        title: "Books",
+        text:
+            "Information could be stored, preserved, and reproduced in physical form."
     },
 
     newspaper: {
-        title: "The Newspaper",
         icon: "📰",
-        text: `
-            Newspapers allowed information and ideas to reach
-            large audiences on a regular basis.
-        `
+        title: "Newspapers",
+        text:
+            "Information could reach large audiences on a regular basis, helping create shared public conversations."
     },
 
     internet: {
+        icon: "💻",
         title: "The Internet",
-        icon: "🌐",
-        text: `
-            The internet dramatically increased the speed and
-            scale at which information could be shared.
-        `
+        text:
+            "Information could travel globally almost instantly, making access faster and more widespread than ever."
     },
 
     ai: {
-        title: "Artificial Intelligence",
         icon: "🤖",
-        text: `
-            AI can now generate, organize, and communicate
-            information, creating new questions about how
-            humans decide what to trust.
-        `
+        title: "Artificial Intelligence",
+        text:
+            "Information can now be generated, organized, and personalized at a speed that creates a new relationship between humans and knowledge."
     }
-
 };
 
-function selectTechnology(technology) {
+function selectTechnology(type, button) {
+    const display =
+        document.getElementById("technologyDisplay");
 
-    const data = technologyData[technology];
+    const data =
+        technologyData[type];
 
-    if (!data) {
-        return;
-    }
+    document
+        .querySelectorAll(".technology-button")
+        .forEach(function(btn) {
+            btn.classList.remove("active");
+        });
 
-    const result = document.getElementById("technologyResult");
+    button.classList.add("active");
 
-    result.innerHTML = `
-        <div class="technology-result">
+    display.innerHTML = `
+        <div class="technology-icon">${data.icon}</div>
 
-            <div class="technology-icon">
-                ${data.icon}
-            </div>
+        <h3>${data.title}</h3>
 
-            <h3>${data.title}</h3>
-
-            <p>
-                ${data.text}
-            </p>
-
-        </div>
+        <p>${data.text}</p>
     `;
 }
 
 function revealFinalQuestion() {
-
     const question =
         document.getElementById("finalQuestion");
-
-    if (!question) {
-        return;
-    }
 
     question.classList.remove("hidden");
 }
 
 function chooseAnswer(answer) {
-
     const response =
         document.getElementById("finalResponse");
 
-    if (!response) {
-        return;
-    }
-
     if (answer === "more") {
-
         response.innerHTML = `
             <strong>Better?</strong>
 
@@ -315,9 +376,7 @@ function chooseAnswer(answer) {
                 accurate, useful, or trustworthy.
             </p>
         `;
-
-    } else if (answer === "responsibility") {
-
+    } else {
         response.innerHTML = `
             <strong>More Responsibility</strong>
 
@@ -332,29 +391,26 @@ function chooseAnswer(answer) {
     response.classList.remove("hidden");
 }
 
-window.addEventListener("scroll", function () {
-
-    const progressBar =
-        document.getElementById("scrollProgress");
-
-    if (!progressBar) {
-        return;
-    }
-
+window.addEventListener("scroll", function() {
     const scrollTop =
-        window.scrollY;
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
 
-    const documentHeight =
+    const scrollHeight =
         document.documentElement.scrollHeight -
-        window.innerHeight;
+        document.documentElement.clientHeight;
 
-    const progress =
-        (scrollTop / documentHeight) * 100;
+    const scrollPercentage =
+        scrollHeight > 0
+            ? (scrollTop / scrollHeight) * 100
+            : 0;
 
-    progressBar.style.width = progress + "%";
+    document.getElementById("progressBar").style.width =
+        scrollPercentage + "%";
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
+    changeAccess(1);
 
     const finalResponse =
         document.getElementById("finalResponse");
@@ -362,5 +418,4 @@ document.addEventListener("DOMContentLoaded", function () {
     if (finalResponse) {
         finalResponse.classList.add("hidden");
     }
-
 });
