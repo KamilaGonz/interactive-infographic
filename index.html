@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How the Printing Press Changed Knowledge</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="progress-container">
+        <div id="progressBar"></div>
+    </div>
+
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="eyebrow">HUMANS & TECHNOLOGY</p>
+
+            <h1>How the Printing Press Changed Knowledge</h1>
+
+            <p class="hero-subtitle">
+                The printing press did more than make books faster.
+                It changed who could access, share, and challenge knowledge.
+            </p>
+
+            <button class="primary-button" onclick="startJourney()">
+                Start the Journey →
+            </button>
+        </div>
+    </header>
+
+
+    <!-- INTRO -->
+    <section class="intro" id="journey">
+        <p class="section-label">THE PROBLEM</p>
+
+        <h2>Before information could spread, someone had to copy it.</h2>
+
+        <p>
+            Before the printing press, books were usually copied by hand.
+            This made information slow, expensive, and difficult to reproduce.
+        </p>
+
+        <div class="intro-question">
+            <strong>But what does that actually feel like?</strong>
+            <br>
+            Try making a book yourself.
+        </div>
+    </section>
+
+
+    <!-- SECTION 1: COPY A BOOK -->
+    <section class="experience-section">
+        <div class="section-number">01</div>
+
+        <div class="section-content">
+            <p class="section-label">BEFORE PRINTING</p>
+
+            <h2>Try to make a book.</h2>
+
+            <p>
+                Imagine that every page of a book has to be copied by hand.
+                Each click represents another page you have personally copied.
+            </p>
+
+            <div class="copy-experience">
+
+                <div class="book-display">
+                    <div id="bookPages" class="book-pages">
+                        <span class="page-placeholder">📜</span>
+                    </div>
+
+                    <p id="pageCount">0 pages copied</p>
+                </div>
+
+                <div class="experience-controls">
+                    <button class="action-button" onclick="copyPage()">
+                        ✍️ Copy a Page
+                    </button>
+
+                    <button class="secondary-button" onclick="finishBook()">
+                        📖 Finish the Book
+                    </button>
+                </div>
+
+                <div id="copyMessage" class="interaction-message">
+                    You haven't copied anything yet.
+                </div>
+
+            </div>
+
+            <div id="bookFinished" class="hidden reveal-box">
+                <h3>Imagine doing this for an entire book.</h3>
+
+                <p>
+                    Copying a book by hand required enormous amounts of
+                    time and labor. Knowledge existed, but reproducing it
+                    was difficult.
+                </p>
+
+                <p class="highlight">
+                    <strong>Knowledge was valuable partly because it was scarce.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECTION 2: PRINTING PRESS -->
+    <section class="experience-section alternate">
+        <div class="section-number">02</div>
+
+        <div class="section-content">
+            <p class="section-label">THE PRINTING PRESS</p>
+
+            <h2>Then one copy could become hundreds.</h2>
+
+            <p>
+                The printing press changed the process of reproduction.
+                Instead of copying every page individually, one prepared
+                text could be reproduced again and again.
+            </p>
+
+            <div class="printing-experience">
+
+                <div class="printing-press">
+                    <div class="press-top">PRINTING PRESS</div>
+
+                    <div id="printedPages" class="printed-pages">
+                    </div>
+
+                    <div class="press-bottom"></div>
+                </div>
+
+                <div class="print-counter">
+                    <span id="printCount">0</span>
+                    <small>copies printed</small>
+                </div>
+
+                <button class="action-button large-button" onclick="printCopy()">
+                    🖨️ PRINT A COPY
+                </button>
+
+                <button class="secondary-button" onclick="printMany()">
+                    Print 25 Copies
+                </button>
+
+                <p id="printMessage" class="interaction-message">
+                    The press is ready.
+                </p>
+
+            </div>
+
+            <div class="comparison">
+
+                <div class="comparison-card">
+                    <span>BEFORE</span>
+                    <strong>1 → 1</strong>
+                    <p>One person copies one page.</p>
+                </div>
+
+                <div class="comparison-arrow">→</div>
+
+                <div class="comparison-card">
+                    <span>AFTER</span>
+                    <strong>1 → MANY</strong>
+                    <p>One text can become many copies.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECTION 3: SPREAD AN IDEA -->
+    <section class="experience-section">
+        <div class="section-number">03</div>
+
+        <div class="section-content">
+            <p class="section-label">DIFFUSION</p>
+
+            <h2>Now watch an idea spread.</h2>
+
+            <p>
+                Once information could be reproduced more easily, it could
+                also travel farther. Click below to see how one idea can
+                move from one person to many.
+            </p>
+
+            <div class="network-experience">
+
+                <div id="ideaNetwork" class="idea-network">
+                    <div class="person main-person">💡</div>
+                </div>
+
+                <button class="action-button" onclick="spreadIdea()">
+                    🌍 Spread the Idea
+                </button>
+
+                <button class="secondary-button" onclick="resetNetwork()">
+                    Reset
+                </button>
+
+                <div class="spread-status">
+                    <strong id="peopleReached">1</strong>
+                    <span>person reached</span>
+                </div>
+
+                <p id="spreadMessage" class="interaction-message">
+                    One person has an idea.
+                </p>
+
+            </div>
+
+            <div id="spreadConclusion" class="reveal-box hidden">
+                <h3>Information becomes harder to contain.</h3>
+
+                <p>
+                    The printing press did not create disagreement.
+                    It changed how quickly ideas could be reproduced,
+                    shared, and challenged.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECTION 4: ACCESS SLIDER -->
+    <section class="experience-section alternate">
+        <div class="section-number">04</div>
+
+        <div class="section-content">
+            <p class="section-label">ACCESS</p>
+
+            <h2>How far can knowledge reach?</h2>
+
+            <p>
+                Move the slider to see how the scale of information changes.
+            </p>
+
+            <div class="access-experience">
+
+                <div class="access-scale">
+                    <div id="accessPeople" class="access-people">
+                    </div>
+                </div>
+
+                <input
+                    type="range"
+                    id="accessSlider"
+                    min="1"
+                    max="4"
+                    value="1"
+                    oninput="changeAccess(this.value)"
+                >
+
+                <div class="slider-labels">
+                    <span>Local</span>
+                    <span>Regional</span>
+                    <span>National</span>
+                    <span>Global</span>
+                </div>
+
+                <div class="access-result">
+                    <span id="accessTitle">One community</span>
+
+                    <p id="accessDescription">
+                        Information may stay within a small group of people.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="course-connection">
+                <p>
+                    <strong>COURSE CONNECTION:</strong> PROLIFERATION
+                </p>
+
+                <p>
+                    Technologies can spread beyond their original setting,
+                    changing how people interact with the world around them.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECTION 5: WHO CONTROLS INFORMATION -->
+    <section class="experience-section">
+        <div class="section-number">05</div>
+
+        <div class="section-content">
+            <p class="section-label">FROM SCARCITY TO ACCESS</p>
+
+            <h2>Who gets the information?</h2>
+
+            <p>
+                The printing press did not instantly make everyone literate.
+                But it helped change the conditions under which information
+                could be reproduced and distributed.
+            </p>
+
+            <div class="then-now">
+
+                <div class="toggle-buttons">
+                    <button
+                        id="thenButton"
+                        class="toggle-button active"
+                        onclick="showInformation('then')">
+                        THEN
+                    </button>
+
+                    <button
+                        id="nowButton"
+                        class="toggle-button"
+                        onclick="showInformation('now')">
+                        NOW
+                    </button>
+                </div>
+
+                <div id="informationDisplay" class="information-display">
+                    <div class="info-icon">📜</div>
+
+                    <h3>Information was difficult to reproduce.</h3>
+
+                    <div class="info-points">
+                        <span>💰 Expensive</span>
+                        <span>🐌 Slow</span>
+                        <span>📚 Limited copies</span>
+                    </div>
+
+                    <p>
+                        Access to written knowledge was limited by the time,
+                        money, and labor required to reproduce it.
+                    </p>
+                </div>
+
+                <button
+                    class="question-button"
+                    onclick="revealInformationQuestion()">
+                    Wait... what changed?
+                </button>
+
+                <div id="informationQuestion" class="hidden reveal-box">
+                    <h3>The problem changed.</h3>
+
+                    <p>
+                        We went from struggling to access information
+                        to struggling to decide what information to trust.
+                    </p>
+
+                    <button
+                        class="secondary-button"
+                        onclick="showResponsibility()">
+                        What does that mean?
+                    </button>
+                </div>
+
+                <div id="responsibilityMessage" class="hidden responsibility-box">
+                    <strong>More information can also mean more responsibility.</strong>
+
+                    <p>
+                        When information becomes easier to reproduce and
+                        spread, humans have to make decisions about what
+                        deserves to be believed.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECTION 6: MODERN TECHNOLOGY -->
+    <section class="experience-section alternate">
+        <div class="section-number">06</div>
+
+        <div class="section-content">
+            <p class="section-label">THEN → NOW</p>
+
+            <h2>Every technology changes our relationship with knowledge.</h2>
+
+            <p>
+                The printing press was not the end of this transformation.
+                It was one step in a much longer history of changing how
+                humans create and share information.
+            </p>
+
+            <div class="technology-selector">
+
+                <button
+                    class="technology-button active"
+                    onclick="selectTechnology('book', this)">
+                    📖
+                    <span>Book</span>
+                </button>
+
+                <button
+                    class="technology-button"
+                    onclick="selectTechnology('newspaper', this)">
+                    📰
+                    <span>Newspaper</span>
+                </button>
+
+                <button
+                    class="technology-button"
+                    onclick="selectTechnology('internet', this)">
+                    💻
+                    <span>Internet</span>
+                </button>
+
+                <button
+                    class="technology-button"
+                    onclick="selectTechnology('ai', this)">
+                    🤖
+                    <span>AI</span>
+                </button>
+
+            </div>
+
+            <div id="technologyDisplay" class="technology-display">
+
+                <div class="technology-icon">📖</div>
+
+                <h3>Books</h3>
+
+                <p>
+                    Information could be stored, preserved, and reproduced
+                    in physical form.
+                </p>
+
+            </div>
+
+            <div class="technology-timeline">
+                <span>PRINTING PRESS</span>
+                <span>→</span>
+                <span>MASS MEDIA</span>
+                <span>→</span>
+                <span>INTERNET</span>
+                <span>→</span>
+                <span>AI</span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FINAL QUESTION -->
+    <section class="final-section">
+
+        <div class="final-content">
+
+            <p class="section-label">NOW THINK ABOUT IT</p>
+
+            <h2>What happens when information is no longer scarce?</h2>
+
+            <p>
+                The printing press made information easier to reproduce.
+                The Internet made information easier to distribute.
+                AI is beginning to make information easier to generate.
+            </p>
+
+            <button
+                id="thinkButton"
+                class="primary-button"
+                onclick="revealFinalQuestion()">
+                🤔 Think About It
+            </button>
+
+            <div id="finalQuestion" class="hidden final-question">
+
+                <h3>
+                    Is having more information always better?
+                </h3>
+
+                <div class="final-options">
+
+                    <button onclick="chooseAnswer('more')">
+                        More information = better
+                    </button>
+
+                    <button onclick="chooseAnswer('responsibility')">
+                        More information = more responsibility
+                    </button>
+
+                </div>
+
+                <div id="finalResponse" class="final-response">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONNECTION TO HUMAN EXPERIENCE -->
+    <section class="human-connection">
+
+        <p class="section-label">THE HUMAN QUESTION</p>
+
+        <h2>
+            Technology changes what humans can do.
+            But it can also change how humans experience the world.
+        </h2>
+
+        <p>
+            The printing press changed how humans experienced knowledge.
+            Today, technologies like the Internet and AI are changing that
+            relationship again.
+        </p>
+
+        <p class="big-question">
+            If technology keeps changing what humans can create, share,
+            and understand, <strong>what makes the experience uniquely human?</strong>
+        </p>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
